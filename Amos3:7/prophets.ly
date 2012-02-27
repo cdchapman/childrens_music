@@ -3,9 +3,15 @@
 \header {
   title = "Prophets"
   composer = "Chris Chapman"
-  opus = "0.1"
+  poet = "Amos"
+  opus = "Op. 0.2"
+  copyright = \markup { \char ##x00A9 "2012 Chris Chapman. Licensed under a CC BY-NC-SA 3.0 Unported License." }
 }
 
+\include "english.ly"
+\paper {
+  #(set-paper-size "letter")
+}
 
 upper = \relative c' {
   \clef treble
@@ -21,8 +27,8 @@ lower = \relative c {
   \key c \major
   \time 4/4
 
-  <c e>2 <aes f'> | << { g'8 e~ e4 } \\ { g,2 } >> r | 
-  <d' fis a c>\arpeggio <e c'> | <d f c'>4 g, a8 b <c e>4 |
+  <c e>2 <as f'> | << { g'8 e~ e4 } \\ { g,2 } >> r | 
+  <d' fs a c>\arpeggio <e c'> | <d f c'>4 g, a8 b <c e>4 |
 }
 
 text = \lyricmode {
