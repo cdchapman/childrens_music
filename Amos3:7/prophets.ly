@@ -4,6 +4,7 @@
   title = "Prophets"
   composer = "Chris Chapman"
   poet = "Amos"
+  piece = "Amos 3:7"
   opus = "Op. 0.2"
   copyright = \markup { \char ##x00A9 "2012 Chris Chapman. Licensed under a CC BY-NC-SA 3.0 Unported License." }
 }
