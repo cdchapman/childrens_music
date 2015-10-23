@@ -1,7 +1,7 @@
 \version "2.18.2"
 
 \header {
-  title = "Imagination"
+  title = "Imagination Song"
   composer = "Bailey Burch"
 }
 
