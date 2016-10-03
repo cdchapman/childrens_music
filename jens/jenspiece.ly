@@ -212,10 +212,12 @@ teachMeText = \lyricmode {
   \new GrandStaff <<
     \new Staff = "upper" {
       \clef treble \key bf \major \time 6/8
+      \set Score.tempoHideNote = ##t
+      \tempo 4. = 60
       \introductionUpper \bar "||"
       \new Voice = "tellMe" \tellMeUpper
       \transitionUpper \bar "||"
-      \key d \major \time 3/4
+      \time 3/4 \key d \major 
       \tempo \markup {
         \concat {
           (
@@ -224,8 +226,8 @@ teachMeText = \lyricmode {
           \smaller \general-align  #Y #DOWN \note #"4" #1
           )
         }
-      }
-      \new Voice = "teachMe" \teachMeUpper
+      } 4 = 100
+      \new Voice = "teachMe" \teachMeUpper \bar "|."
     }
     \new Lyrics \lyricsto "tellMe" \tellMeText
     \new Lyrics \lyricsto "teachMe" \teachMeText
@@ -234,7 +236,8 @@ teachMeText = \lyricmode {
       \introductionLower
       \tellMeLower
       \transitionLower
-      \key d \major \teachMeLower \bar "|."
+      \key d \major 
+      \teachMeLower
     }
     >>
   \layout {
