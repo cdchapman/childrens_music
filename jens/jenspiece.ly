@@ -3,10 +3,22 @@
 \header {
   title = "Jen’s Arrangement"
   subtitle = "Tell me the stories of Jesus / Teach me to walk in the light"
-  arranger = "Chris Chapman"
+  poet = \markup \column {
+    \line { W.H. Parker }
+    \line { Clara W. McMaster }
+  }
+  composer = \markup \right-column {
+    \line { Frederic A.Challinor }
+    \line { Clara W. McMaster }
+  }
+  arranger = \markup \right-column {
+    \vspace #1 \line { Chris Chapman }
+  }
+  tagline = ##f
   copyright = \markup \fontsize #-1 \center-column { 
     \line  {
-      Arrangement © 2016 Chris Chapman.
+      Arrangement © 2016 Chris Chapman. Other contributions courtesy of their
+      respective contributors.
     }
     \line {
       This arrangement may be freely copied, distributed,
@@ -25,25 +37,42 @@
   #(set-paper-size "letter")
 }
 
+introductionUpper = \relative c' {
+
+  | <d f>8 <bf d> <c ef> <d f> <f a> <ef g>
+  | <d f>4. <bf d>
+  | <d f> << { \voiceOne c'4 f,8 } \new Voice { \voiceTwo ef4. } >>
+  | \oneVoice <d bf'>2.
+
+}
+
+introductionLower = \relative c {
+
+  | <bf f'>4. f'
+  | <bf, f'> <bf f'>
+  | <f' bf> <f a>
+  | << { bf4. bf } \\ { bf,2. } >>
+
+}
+
 tellMeUpper = \relative c' {
-  \clef "treble"
-  \key bf \major
-  \time 6/8
+
+  \mark \default
 
   | <d f>8 <bf d> <c ef> <d f> <f a> <ef g>
   | <d f>4. <bf d>
   | <a ef'> << { \voiceOne f'4 c8 } \new Voice { \voiceTwo a4. } >>
-  | \oneVoice <bf d>2. \break
+  | \oneVoice <bf d>2.
   
   | <d f>8 <bf d> <c ef> <d f> <f a> <ef g>
   | <d f>4. <d g>
   | <c a'> << { \voiceOne g'4 c,8 } \new Voice { \voiceTwo bf4. } >>
-  | \oneVoice f'2. \break
+  | \oneVoice f'2.
   
   | <ef c'>4. << { \voiceOne a4 f8 } \new Voice { \voiceTwo ef4. } >>
   | \oneVoice <d g> <d f>
   | <d c'> << { \voiceOne bf'4 af8 } \new Voice { \voiceTwo d,4. } >>
-  | << { \voiceOne g2. } \new Voice { \voiceTwo d4.( ef) } >> \break
+  | << { \voiceOne g2. } \new Voice { \voiceTwo d4.( ef) } >>
 
   | \oneVoice <ef d'>4. << { \voiceOne c'4 a8 } \new Voice { \voiceTwo ef4. } >>
   | \oneVoice <d bf'>4. <cs e>\fermata
@@ -53,8 +82,6 @@ tellMeUpper = \relative c' {
 }
 
 tellMeLower = \relative c {
-  \clef "bass"
-  \key bf \major
 
   | <bf f'>4. f'
   | <bf, f'> <bf f'>
@@ -74,7 +101,7 @@ tellMeLower = \relative c {
   | a'?4. f
   | g <g bf>_\fermata
   | <f bf> <f a>
-  | bf,2.
+  | << { f4. f } \\ { bf,2. } >>
 }
 
 tellMeText = \lyricmode {
@@ -86,10 +113,28 @@ tellMeText = \lyricmode {
 
 }
 
+transitionUpper = \relative c' {
+
+  | <d f>8 <bf d> <c ef> <d f> <f a> <ef g>
+  | <d f>4. <cs e>
+  | <fs a>8 <d fs> <e g> <fs a> <a cs> <g b>
+  | <fs a>4 <e g>8 << { \voiceOne g fs e } \new Voice { \voiceTwo cs4. } >>
+  | \oneVoice
+
+}
+
+transitionLower = \relative c {
+
+  | <bf f'>4. f'
+  | <bf, f'> <a g'>
+  | <a a'> a'
+  | a8 a,4 <a a'>4.
+
+}
+
 teachMeUpper = \relative c' {
-  \clef "treble"
-  \key d \major
-  \time 3/4
+
+  \mark \default
 
   \repeat unfold 2 {
 
@@ -117,8 +162,6 @@ teachMeUpper = \relative c' {
 }
 
 teachMeLower = \relative c {
-  \clef "bass"
-  \key d \major
 
   \repeat unfold 2 {
     | <d a'>2 g4
@@ -139,7 +182,7 @@ teachMeLower = \relative c {
     | <g, b>2.
     | <fs a>
     | <g b>4 a <a, g'>
-    | <d a'>2.
+    | <d fs>2.
 
   }
 
@@ -162,13 +205,31 @@ teachMeText = \lyricmode {
 \score {
   \new GrandStaff <<
     \new Staff = "upper" {
+      \clef treble \key bf \major \time 6/8
+      \introductionUpper \bar "||"
       \new Voice = "tellMe" \tellMeUpper
-      \break \bar "||"
+      \transitionUpper \bar "||"
+      \key d \major \time 3/4
+      \tempo \markup {
+        \concat {
+          (
+          \smaller \general-align  #Y #DOWN \note #"8" #1
+          " = "
+          \smaller \general-align  #Y #DOWN \note #"4" #1
+          )
+        }
+      }
       \new Voice = "teachMe" \teachMeUpper
     }
     \new Lyrics \lyricsto "tellMe" \tellMeText
     \new Lyrics \lyricsto "teachMe" \teachMeText
-    \new Staff = "lower" { \tellMeLower \teachMeLower \bar "|." }
+    \new Staff = "lower" {
+      \clef bass \key bf \major
+      \introductionLower
+      \tellMeLower
+      \transitionLower
+      \key d \major \teachMeLower \bar "|."
+    }
     >>
   \layout {
     \context {
