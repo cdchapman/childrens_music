@@ -46,7 +46,7 @@ tellMeUpper = \relative c' {
   | << { \voiceOne g2. } \new Voice { \voiceTwo d4.( ef) } >>
   \break
   | \oneVoice <ef d'>4. << { \voiceOne c'4 a8 } \new Voice { \voiceTwo ef4. } >>
-  | \oneVoice <d bf>4. <cs e>\fermata
+  | \oneVoice <d bf'>4. <cs e>\fermata
   | <d f> << { \voiceOne c'4 f,8 } \new Voice { \voiceTwo ef4. } >>
   | \oneVoice <d bf'>2.
 
