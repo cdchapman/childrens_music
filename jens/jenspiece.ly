@@ -33,18 +33,18 @@ tellMeUpper = \relative c' {
   | <d f>8 <bf d> <c ef> <d f> <f a> <ef g>
   | <d f>4. <bf d>
   | <a ef'> << { \voiceOne f'4 c8 } \new Voice { \voiceTwo a4. } >>
-  | \oneVoice <bf d>2.
-  \break
+  | \oneVoice <bf d>2. \break
+  
   | <d f>8 <bf d> <c ef> <d f> <f a> <ef g>
   | <d f>4. <d g>
   | <c a'> << { \voiceOne g'4 c,8 } \new Voice { \voiceTwo bf4. } >>
-  | \oneVoice f'2.
-  \break
+  | \oneVoice f'2. \break
+  
   | <ef c'>4. << { \voiceOne a4 f8 } \new Voice { \voiceTwo ef4. } >>
   | \oneVoice <d g> <d f>
   | <d c'> << { \voiceOne bf'4 af8 } \new Voice { \voiceTwo d,4. } >>
-  | << { \voiceOne g2. } \new Voice { \voiceTwo d4.( ef) } >>
-  \break
+  | << { \voiceOne g2. } \new Voice { \voiceTwo d4.( ef) } >> \break
+
   | \oneVoice <ef d'>4. << { \voiceOne c'4 a8 } \new Voice { \voiceTwo ef4. } >>
   | \oneVoice <d bf'>4. <cs e>\fermata
   | <d f> << { \voiceOne c'4 f,8 } \new Voice { \voiceTwo ef4. } >>
@@ -86,25 +86,89 @@ tellMeText = \lyricmode {
 
 }
 
+teachMeUpper = \relative c' {
+  \clef "treble"
+  \key d \major
+  \time 3/4
+
+  \repeat unfold 2 {
+
+    | << { \voiceOne fs4 fs } \new Voice { \voiceTwo d2 } >> \oneVoice <d b'>4
+    | <d a'> d <cs g'>
+    | << { \voiceOne fs fs } \new Voice { \voiceTwo d2 } >> \oneVoice <b e g>4
+    | <a cs e>2.
+
+    | << { \voiceOne e'4 e } \new Voice { \voiceTwo cs2 } >> \oneVoice <d b'>4
+    | <cs a'> << { \voiceOne cs e | <g b> <fs a> <e g> } \new Voice { \voiceTwo cs2 | cs } >>
+    | \oneVoice <d fs>2.
+
+    | d4 d fs
+    | <fs a> fs d
+    | << { \voiceOne g b } \new Voice { \voiceTwo d,2 } >> \oneVoice <g d'>4
+    | <fs a>2.
+
+    | << { \voiceOne b4 e,2 } \new Voice { \voiceTwo d2. } >>
+    | \oneVoice <d a'>4 d4. d8
+    | <e g>4 <d fs> <cs e>
+    | << { \voiceOne d2. } \new Voice { \voiceTwo d2. } >>
+
+  }
+
+}
+
+teachMeLower = \relative c {
+  \clef "bass"
+  \key d \major
+
+  \repeat unfold 2 {
+    | <d a'>2 g4
+    | <fs a>2 <e a>4
+    | <d a'>2 g,4
+    | a2.
+
+    | <g' a>2 <e g>4
+    | <a, g'>2.
+    | a4 b <cs a'>
+    | <d a'>2.
+
+    | b'2 <bf d>4
+    | <a d>2 <d, c'>4
+    | <g b>2 <g b>4
+    | d'2.
+
+    | <g, b>2.
+    | <fs a>
+    | <g b>4 a <a, g'>
+    | <d a'>2.
+
+  }
+
+}
+
 teachMeText = \lyricmode {
 
-  Teach me to walk in the light of his love;
-  Teach me to pray to my Father above;
-  Teach me to know of the things that are right;
-  Teach me, teach me to walk in the light.
+  | Teach me to | walk in the | light of his | love;
+  | Teach me to | pray to my | Fa -- ther a -- | bove;
+  | Teach me to | know of the | things that are | right;
+  | Teach me, | teach me to | walk in the | light.
 
-  Father in Heaven, we thank thee this day
-  For loving guidance to show us the way.
-  Grateful, we praise thee with songs of delight!
-  Gladly, gladly we'll walk in the light.
+  | Fa -- ther in | Heav -- en, we | thank thee this | day
+  | For lov -- ing | guid -- ance to | show us the | way.
+  | Grate -- ful, we | praise thee with | songs of de -- | light!
+  | Glad -- ly, | glad -- ly we’ll | walk in the | light.
 
 }
 
 \score {
   \new GrandStaff <<
-    \new Staff = "upper" { \new Voice = "melody" \tellMeUpper }
-    \new Lyrics \lyricsto "melody" \tellMeText
-    \new Staff = "lower" { \tellMeLower \bar "|." }
+    \new Staff = "upper" {
+      \new Voice = "tellMe" \tellMeUpper
+      \break \bar "||"
+      \new Voice = "teachMe" \teachMeUpper
+    }
+    \new Lyrics \lyricsto "tellMe" \tellMeText
+    \new Lyrics \lyricsto "teachMe" \teachMeText
+    \new Staff = "lower" { \tellMeLower \teachMeLower \bar "|." }
     >>
   \layout {
     \context {
