@@ -118,8 +118,11 @@ transitionUpper = \relative c' {
   | <d f>8 <bf d> <c ef> <d f> <f a> <ef g>
   | <d f>4. <cs e>
   | <fs a>8 <d fs> <e g> <fs a> <a cs> <g b>
-  | <fs a>4 <e g>8 << { \voiceOne g fs e } \new Voice { \voiceTwo cs4. } >>
-  | \oneVoice
+  | <fs a>4 <e g>8 <d fs> <e g> <fs a>
+
+  | << { b( e,4) } \\ d4. >> << { a'8[( d,]) d } \\ d4. >>
+  | <e g>4 <d fs> <cs e>
+  | \bar "!" \textLengthOn d2.^\markup { \tiny { (optional measure) } }
 
 }
 
@@ -128,8 +131,11 @@ transitionLower = \relative c {
   | <bf f'>4. f'
   | <bf, f'> <a g'>
   | <a a'> a'
-  | a8 a,4 <a a'>4.
+  | a8 a,4 a'4.
 
+  | <g b>4. <fs a>
+  | <g b>4 a <a, g'>
+  | <d fs>2.
 }
 
 teachMeUpper = \relative c' {
