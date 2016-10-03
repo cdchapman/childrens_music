@@ -122,8 +122,9 @@ transitionUpper = \relative c' {
 
   | << { b4( fs8) } \\ d4. >> <cs e>8 <d fs> <e g>
   | << { a4( d,8)  d4 d8 } \\ { cs4. b } >>
-  | <e g>4 <d fs> <cs e>
-  | d2.\fermata
+
+  | \time 9/8 <e g>4. <d fs> <cs e>
+  | d2.~ d4.\fermata
 
 }
 
@@ -136,8 +137,9 @@ transitionLower = \relative c {
 
   | <g b>4. <g a>
   | <fs a> g
-  | <g b>4 a <a, g'>
-  | <d fs>2._\fermata
+
+  | \time 9/8 <g b>4. a <a, g'>
+  | <d fs>2.~ <d fs>4._\fermata
 }
 
 teachMeUpper = \relative c' {
