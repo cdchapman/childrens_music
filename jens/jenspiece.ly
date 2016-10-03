@@ -208,12 +208,15 @@ teachMeText = \lyricmode {
 
 }
 
+tellMeTempo = 60
+teachMeTempo = #(/ (* 3 tellMeTempo) 2)
+
 \score {
   \new GrandStaff <<
     \new Staff = "upper" {
       \clef treble \key bf \major \time 6/8
       \set Score.tempoHideNote = ##t
-      \tempo 4. = 60
+      \tempo 4. = \tellMeTempo
       \introductionUpper \bar "||"
       \new Voice = "tellMe" \tellMeUpper
       \transitionUpper \bar "||"
@@ -226,7 +229,7 @@ teachMeText = \lyricmode {
           \smaller \general-align  #Y #DOWN \note #"4" #1
           )
         }
-      } 4 = 100
+      } 4 = \teachMeTempo
       \new Voice = "teachMe" \teachMeUpper \bar "|."
     }
     \new Lyrics \lyricsto "tellMe" \tellMeText
